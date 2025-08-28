@@ -3,7 +3,7 @@
     </h1>
 
 
-
+Hunyuan, Tencent & [UnifiedReward](https://github.com/CodeGoat24/UnifiedReward) Team
 
 <a href="">
 <img src='https://img.shields.io/badge/arXiv-UniGenBench-blue' alt='Paper PDF'></a>
