@@ -153,7 +153,7 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
 #!/bin/bash
 
 # vLLM request url
-API_URL=${LOCAL_IP}
+API_URL=http://${LOCAL_IP}:8080
 
 DATA_PATH="flux_output"  # Directory of generated images
 CSV_FILE="data/test_prompts_en.csv" # English test prompt file
