@@ -118,12 +118,72 @@ python eval/gemini_zh_eval.py \
 - A detailed `.csv` **results file** will also be saved in the `./results` directory.  
  
 
-### 2. Calculate Scores
+### 2. Calculate Score
 
 You can also load the results file to re-print or further analyze the scores. 
 ```
 python eval/calculate_score.py
 ```
+
+
+## ✨ Evaluation with Qwen2.5-VL-72b
+### 1. Deploy vLLM server
+
+1. Install vLLM
+```bash
+pip install vllm==0.9.0.1 transformers==4.52.4
+```
+2. Start server
+```bash
+echo ${LOCAL_IP}
+
+CUDA_VISIBLE_DEVICES=0,1,2,3 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
+    --host ${LOCAL_IP} \
+    --trust-remote-code \
+    --served-model-name QwenVL \
+    --gpu-memory-utilization 0.9 \
+    --tensor-parallel-size 4 \
+    --pipeline-parallel-size 1 \
+    --limit-mm-per-prompt image=2 \
+    --port 8080 
+```
+
+### 2. Evaluation
+```
+#!/bin/bash
+
+# vLLM request url
+API_URL=${LOCAL_IP}
+
+DATA_PATH="flux_output"  # Directory of generated images
+CSV_FILE="data/test_prompts_en.csv" # English test prompt file
+
+# English Evaluation
+python eval/qwenvl_72b_en_eval.py \
+  --data_path "$DATA_PATH" \
+  --api_url "$API_URL" \
+  --csv_file "$CSV_FILE"
+
+# Chinese Evaluation
+CSV_FILE="data/test_prompts_zh.csv" # Chinese test prompt file
+
+python eval/qwenvl_72b_zh_eval.py \
+  --data_path "$DATA_PATH" \
+  --api_url "$API_URL" \
+  --csv_file "$CSV_FILE"
+```
+
+- After evaluation, scores across all dimensions will be **printed to the console**.  
+- A detailed `.csv` **results file** will also be saved in the `./results` directory.  
+ 
+
+### 3. Calculate Score
+
+You can also load the results file to re-print or further analyze the scores. 
+```
+python eval/calculate_score.py
+```
+
 
 ## 📧 Contact
 If you have any comments or questions, please open a new issue or feel free to contact [Yibin Wang](https://codegoat24.github.io).
