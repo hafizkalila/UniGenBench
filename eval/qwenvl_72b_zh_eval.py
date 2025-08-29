@@ -259,7 +259,7 @@ def main(data_path: str, api_url: str, csv_file: str):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Evaluation with Qwen2.5-VL-72b")
     parser.add_argument("--data_path", type=str, required=True, help="Directory to save generated images")
-    parser.add_argument("--api_url", type=str, required=False, help="vLLM request url")
+    parser.add_argument("--api_url", type=str, required=True, help="vLLM request url")
     parser.add_argument("--csv_file", type=str, default="data/test_prompts_en.csv", help="CSV file containing prompts")
 
     args = parser.parse_args()
